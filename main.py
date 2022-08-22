@@ -3,7 +3,7 @@ import string
 import random
 from timeit import default_timer
 
-allCars = []
+allCars = {}
 
 def initialize():
     for x in range(0,1000000):
@@ -14,13 +14,16 @@ def initialize():
             +  random.choice(string.digits)    \
             + random.choice(string.ascii_uppercase + string.digits)
         car = Car(regno, "")
-        allCars.append(car)
+        allCars[regno] = car
 
 def GetCarByRegNo(regno:str):
-    for car in allCars:
-        if car.Regno == regno:
-            return car
-    return None
+    if not regno in allCars:
+        return None
+    return allCars[regno]
+    # for car in allCars:
+    #     if car.Regno == regno:
+    #         return car
+    # return None
 
 def main():    
     timeStart = default_timer()
@@ -28,8 +31,8 @@ def main():
     timeEnd =  default_timer()
     print("Init tog ", timeEnd-timeStart)
 
-    print(allCars[3].Regno)
-    print(allCars[999999].Regno)
+    # print(allCars[3].Regno)
+    # print(allCars[999999].Regno)
     while True:
         x = input("Ange regno:")
         timeStart = default_timer()
