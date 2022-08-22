@@ -1,6 +1,7 @@
 from car import Car
 import string
 import random
+from timeit import default_timer
 
 allCars = []
 
@@ -22,10 +23,19 @@ def GetCarByRegNo(regno:str):
     return None
 
 def main():    
+    timeStart = default_timer()
     initialize()
+    timeEnd =  default_timer()
+    print("Init tog ", timeEnd-timeStart)
+
+    print(allCars[3].Regno)
+    print(allCars[999999].Regno)
     while True:
         x = input("Ange regno:")
+        timeStart = default_timer()
         car = GetCarByRegNo(x)
+        timeEnd =  default_timer()
+        print("Det tog ", timeEnd-timeStart)
         if car == None:
             print("Finns ej")
         else:
